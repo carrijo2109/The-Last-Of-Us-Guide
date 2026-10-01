@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Last of Us — O guia do jogo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#18221c;--bg2:#222f27;--ink:#e3dcc8;--muted:#9aa798;--rust:#c2603a;--line:#3a4a40;--moss:#5f7d58;
+ --head:"Special Elite","Courier New",monospace;--body:"Source Serif 4",Georgia,serif;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#e9e4d2;--bg2:#ddd6c0;--ink:#1f2a23;--muted:#56645a;--rust:#a8481f;--line:#b9b196;--moss:#4a6a45}}
+:root[data-theme="light"]{--bg:#e9e4d2;--bg2:#ddd6c0;--ink:#1f2a23;--muted:#56645a;--rust:#a8481f;--line:#b9b196;--moss:#4a6a45}
+:root[data-theme="dark"]{--bg:#18221c;--bg2:#222f27;--ink:#e3dcc8;--muted:#9aa798;--rust:#c2603a;--line:#3a4a40;--moss:#5f7d58}
+html{scroll-padding-top:calc(64px + env(safe-area-inset-top,0px));scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:1.08rem/1.7 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--rust);outline-offset:3px}
+h1,h2,h3{font-family:var(--head);font-weight:400;line-height:1.1;margin:0}
+p{max-width:62ch;margin:0 0 1em}
+.wrap{width:min(1100px,100% - 2.5rem);margin-inline:auto}
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:56px;flex-wrap:wrap}
+.logo{font-family:var(--head);text-decoration:none;font-size:1.1rem}
+.nav ul{display:flex;gap:1.25rem;list-style:none;margin:0;padding:0;overflow-x:auto}
+.nav li a{font-size:.95rem;text-decoration:none;color:var(--muted);white-space:nowrap;padding:.4rem 0;display:inline-block}
+.nav li a:hover,.nav li a.on{color:var(--rust)}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--rust);z-index:30}
+
+/* HERO */
+.hero{--x:50%;--y:40%;position:relative;overflow:hidden;color:#e3dcc8;min-height:min(92vh,760px);display:flex;align-items:center;background:linear-gradient(#0f1813,#233127 70%,#2f3f30);border-bottom:1px solid var(--line);touch-action:pan-y}
+.hero svg.sky{position:absolute;inset:auto 0 0 0;width:100%;height:62%;pointer-events:none}
+.layer{transition:transform .15s linear;will-change:transform}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle 220px at var(--x) var(--y),transparent 0,rgba(6,10,8,.35) 55%,rgba(6,10,8,.82) 100%)}
+.hero .wrap{position:relative;z-index:2;padding:6rem 0 7rem}
+.hero h1{font-size:clamp(3rem,13vw,9rem);letter-spacing:-.02em;max-width:9ch;animation:flick 1.6s steps(1) 1}
+@keyframes flick{0%{opacity:0}10%{opacity:1}14%{opacity:.2}20%{opacity:1}28%{opacity:.4}34%,100%{opacity:1}}
+.hero .sub{font-size:clamp(1.15rem,2.6vw,1.5rem);color:#b9c4b4;max-width:34ch;margin:1.5rem 0 2rem}
+.hint{position:absolute;right:1.25rem;bottom:1rem;z-index:3;font-size:.85rem;color:#b9c4b4}
+.btn{display:inline-block;background:var(--rust);color:#fff;font-family:var(--head);padding:.8rem 1.4rem;text-decoration:none;border-radius:2px;border:0;cursor:pointer;font-size:1rem;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.spore{position:absolute;border-radius:50%;background:#e3dcc8;opacity:0;animation:drift linear infinite;z-index:1}
+@keyframes drift{0%{transform:translate(0,0);opacity:0}15%{opacity:.55}100%{transform:translate(-60px,-70vh);opacity:0}}
+
+section{padding:clamp(3rem,8vw,6rem) 0;border-bottom:1px solid var(--line)}
+section h2{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:1.5rem}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+.two{display:grid;gap:2.5rem;grid-template-columns:1fr}
+.art{background:var(--bg2);border:1px solid var(--line);padding:1rem}
+.art svg{width:100%;height:auto;display:block}
+.facts{background:var(--bg2);padding:1.5rem;border-left:4px solid var(--rust);margin-top:1.5rem}
+.facts dt{font-family:var(--head);color:var(--rust);font-size:.95rem}
+.facts dd{margin:0 0 1rem}.facts dd:last-child{margin:0}
+.grow{animation:sway 5s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes sway{50%{transform:rotate(2deg)}}
+
+/* cartas */
+.chars{display:grid;gap:1.25rem;grid-template-columns:1fr}
+.card{perspective:900px;height:330px;cursor:pointer;background:none;border:0;padding:0;color:inherit;font:inherit;text-align:left}
+.inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s}
+.card.flip .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;background:var(--bg2);border-top:3px solid var(--rust);padding:1.25rem;display:flex;flex-direction:column}
+.face.back{transform:rotateY(180deg);justify-content:center}
+.face svg{flex:1;min-height:0;width:100%}
+.face h3{font-size:1.5rem}
+.role{color:var(--rust);font-size:.95rem}
+.tip{color:var(--muted);font-size:.85rem}
+
+/* infectados */
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.25rem}
+.tabs button{font:inherit;font-family:var(--head);background:transparent;color:var(--ink);border:1px solid var(--line);padding:.6rem 1rem;cursor:pointer;border-radius:2px;transition:background .2s}
+.tabs button[aria-selected="true"]{background:var(--rust);border-color:var(--rust);color:#fff}
+.panel{background:var(--bg2);padding:1.5rem;display:grid;gap:1.5rem;grid-template-columns:1fr;align-items:center}
+.panel svg{width:150px;height:150px;margin:auto}
+.panel h3{font-size:1.5rem;margin-bottom:.6rem}
+.bar{height:10px;background:var(--line);border-radius:5px;overflow:hidden;margin:.4rem 0 .2rem}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--moss),var(--rust));transition:width .8s}
+
+/* linha do tempo */
+.timeline{list-style:none;margin:0;padding:0 0 0 1.4rem;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 1rem 1.25rem}
+.timeline li::before{content:"";position:absolute;left:-1.4rem;top:.85rem;width:12px;height:12px;border-radius:50%;background:var(--rust);transform:translateX(-5px)}
+.timeline button{all:unset;cursor:pointer;display:block;width:100%;padding:.4rem 0}
+.timeline button:focus-visible{outline:3px solid var(--rust)}
+.timeline b{font-family:var(--head);font-weight:400;font-size:1.4rem}
+.timeline .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s;color:var(--muted)}
+.timeline .more>div{overflow:hidden}
+.timeline li.open .more{grid-template-rows:1fr}
+
+/* quiz */
+.quiz{background:var(--bg2);padding:1.5rem}
+.quiz .opts{display:grid;gap:.6rem;margin-top:1rem}
+.quiz .opts button{font:inherit;text-align:left;background:transparent;color:var(--ink);border:1px solid var(--line);padding:.7rem 1rem;cursor:pointer;border-radius:2px}
+.quiz .opts button:hover{border-color:var(--rust)}
+.quiz h3{font-size:1.4rem}
+
+footer{padding:2.5rem 0;color:var(--muted);font-size:.9rem}
+
+@media (min-width:720px){.two{grid-template-columns:1.2fr 1fr;align-items:center}.chars{grid-template-columns:repeat(2,1fr)}.panel{grid-template-columns:170px 1fr}}
+@media (min-width:1000px){.chars{grid-template-columns:repeat(4,1fr)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#topo">The Last of Us</a>
+  <nav aria-label="Principal"><ul>
+    <li><a href="#sobre">O jogo</a></li><li><a href="#personagens">Personagens</a></li>
+    <li><a href="#infectados">Infectados</a></li><li><a href="#linha">Linha do tempo</a></li><li><a href="#quiz">Quiz</a></li>
+  </ul></nav>
+</div></header>
+
+<main id="topo">
+<div class="hero" id="hero">
+  <svg class="sky" viewBox="0 0 1200 380" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g class="layer" data-s="10" fill="#1b2a21">
+      <path d="M0 380V210l60-10v-40h70v70l50 5v-90h60v60l40 5v-110h80v120h50v-70h70v100l60-5v-60h90v130l60-20v-80h80v90h60v-110h70v140h50v-60h60v230z"/></g>
+    <g class="layer" data-s="22" fill="#14201a">
+      <path d="M0 380V260h70v-80h60v60h60v-120h90v130h70v-50h60v90h80v-140h70v120h60v-70h90v110h80v-90h70v-60h70v160h60v-40h60v100z"/>
+      <path d="M640 380V250h-6V120h8V90h6v30h8v130h-6v130zM560 150c10-20 40-26 50-6M655 150c12-18 38-22 48-2" fill="none" stroke="#14201a" stroke-width="6"/>
+      <circle cx="646" cy="84" r="9"/>
+    </g>
+    <g class="layer" data-s="38" fill="#0b130f">
+      <path d="M0 380V310l40-30 30 20 40-40 40 40 50-20v100zM1200 380V300l-50-30-40 30-50-20-40 40-50-10v70z"/>
+      <circle cx="120" cy="320" r="38"/><circle cx="170" cy="335" r="30"/><circle cx="1060" cy="325" r="40"/><circle cx="1110" cy="340" r="30"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <h1>The Last of Us</h1>
+    <p class="sub">Vinte anos depois do colapso, dois sobreviventes atravessam os Estados Unidos.</p>
+    <a class="btn" href="#sobre">Conhecer o jogo</a>
+  </div>
+  <span class="hint">Mova o cursor ou o dedo para usar a lanterna</span>
+</div>
+
+<section id="sobre"><div class="wrap two">
+  <div class="rv">
+    <h2>O jogo</h2>
+    <p>The Last of Us é um jogo de ação e aventura com foco em sobrevivência, desenvolvido pela Naughty Dog. Ele mistura exploração, furtividade e combate em um mundo tomado por um fungo que transforma pessoas em infectados.</p>
+    <p>O que o tornou famoso foi a história: um drama sobre perda, laços e escolhas difíceis. Os recursos são escassos, cada munição conta e o silêncio muitas vezes vale mais que um tiro.</p>
+    <dl class="facts">
+      <dt>Desenvolvedora</dt><dd>Naughty Dog</dd>
+      <dt>Lançamento original</dt><dd>14 de junho de 2013, PlayStation 3</dd>
+      <dt>Trilha sonora</dt><dd>Gustavo Santaolalla</dd>
+    </dl>
+  </div>
+  <div class="art rv" aria-label="Ilustração de um fungo crescendo">
+    <svg viewBox="0 0 400 320" role="img" aria-label="Fungo Cordyceps crescendo de um tronco">
+      <rect width="400" height="320" fill="none"/>
+      <path d="M0 290h400v30H0z" fill="#0b130f"/>
+      <g class="grow"><path d="M190 290c-6-60 4-110-10-170h30c-6 60 6 110 0 170z" fill="#3a2f26"/></g>
+      <g class="grow" style="animation-delay:-1.5s" fill="none" stroke="var(--rust)" stroke-width="5" stroke-linecap="round">
+        <path d="M195 150c-30-30-70-40-90-90M200 140c30-34 60-50 70-100M195 190c-40-10-80 0-110 30M205 200c40-14 80-10 110 20"/>
+      </g>
+      <g fill="var(--moss)"><circle cx="105" cy="60" r="9"/><circle cx="270" cy="40" r="10"/><circle cx="85" cy="220" r="8"/><circle cx="315" cy="220" r="9"/></g>
+    </svg>
+  </div>
+</div></section>
+
+<section id="personagens"><div class="wrap">
+  <h2 class="rv">Personagens</h2>
+  <p class="tip rv">Toque ou clique em uma carta para virar.</p>
+  <div class="chars" id="chars"></div>
+</div></section>
+
+<section id="infectados"><div class="wrap">
+  <h2 class="rv">Infectados</h2>
+  <p class="rv">O fungo Cordyceps toma o corpo do hospedeiro em estágios. Escolha um tipo para ver como ele age.</p>
+  <div class="tabs" role="tablist" aria-label="Tipos de infectados"></div>
+  <div class="panel" id="painel" aria-live="polite"></div>
+</div></section>
+
+<section id="linha"><div class="wrap">
+  <h2 class="rv">Linha do tempo</h2>
+  <ol class="timeline" id="tl"></ol>
+</div></section>
+
+<section id="quiz"><div class="wrap">
+  <h2 class="rv">Quiz rápido</h2>
+  <div class="quiz rv" id="q"></div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><p>Site de fã, sem fins comerciais e sem vínculo oficial. As ilustrações são originais. The Last of Us é marca da Sony Interactive Entertainment e da Naughty Dog.</p></div></footer>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s);
+const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+/* esporos */
+const hero=$("#hero");
+if(!reduce)for(let i=0;i<22;i++){const s=document.createElement("span");s.className="spore";const z=2+Math.random()*4;
+ s.style.cssText=`left:${Math.random()*100}%;top:${50+Math.random()*50}%;width:${z}px;height:${z}px;animation-duration:${9+Math.random()*10}s;animation-delay:${-Math.random()*14}s`;hero.appendChild(s)}
+
+/* lanterna + paralaxe */
+function move(x,y){const r=hero.getBoundingClientRect();const px=(x-r.left),py=(y-r.top);
+ hero.style.setProperty("--x",px+"px");hero.style.setProperty("--y",py+"px");
+ if(!reduce)document.querySelectorAll(".layer").forEach(l=>l.style.transform=`translateX(${(px/r.width-.5)*-l.dataset.s}px)`)}
+hero.addEventListener("pointermove",e=>move(e.clientX,e.clientY));
+hero.addEventListener("touchmove",e=>move(e.touches[0].clientX,e.touches[0].clientY),{passive:true});
+
+/* progresso + menu ativo */
+const links=[...document.querySelectorAll(".nav li a")];
+addEventListener("scroll",()=>{const h=document.documentElement;$("#prog").style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";
+ let cur="";document.querySelectorAll("main section").forEach(s=>{if(s.getBoundingClientRect().top<140)cur="#"+s.id});
+ links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")===cur))},{passive:true});
+
+/* revelar ao rolar */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+const watch=()=>document.querySelectorAll(".rv:not(.in)").forEach(el=>io.observe(el));watch();
+
+/* cartas de personagens (silhuetas originais) */
+const fig=(c,extra)=>`<svg viewBox="0 0 120 150" aria-hidden="true"><circle cx="60" cy="38" r="20" fill="${c}"/>${extra}<path d="M30 150c0-40 10-72 30-72s30 32 30 72z" fill="${c}"/></svg>`;
+const chars=[
+ ["Joel","Sobrevivente","Um contrabandista endurecido pela perda da filha no início do surto. Aceita uma última missão que muda sua vida.",fig("#7d8b78",'<rect x="22" y="84" width="16" height="44" rx="6" fill="#4d5a49"/>')],
+ ["Ellie","Adolescente imune","Criada em um mundo já destruído, é esperta, teimosa e carrega um segredo que pode importar para toda a humanidade.",fig("#c2603a",'<path d="M78 30c18 0 22 24 12 44" stroke="#c2603a" stroke-width="9" fill="none" stroke-linecap="round"/>')],
+ ["Tommy","Irmão de Joel","Ex-soldado que busca reconstruir uma vida em comunidade longe da violência das cidades.",fig("#8a7a5a",'<path d="M38 28h44l6 8H32z" fill="#5c5038"/>')],
+ ["Abby","The Last of Us Part II","Personagem central da sequência, move a trama com motivações que desafiam o jogador a ver os dois lados.",fig("#6f8fa0",'<path d="M80 34c14 6 14 30 4 48" stroke="#6f8fa0" stroke-width="9" fill="none" stroke-linecap="round"/>')]
+];
+$("#chars").innerHTML=chars.map(c=>`<button class="card rv" aria-pressed="false"><div class="inner"><div class="face">${c[3]}<h3>${c[0]}</h3><div class="role">${c[1]}</div></div><div class="face back"><h3>${c[0]}</h3><div class="role">${c[1]}</div><p style="margin-top:.8rem">${c[2]}</p></div></div></button>`).join("");
+document.querySelectorAll(".card").forEach(b=>b.addEventListener("click",()=>{b.classList.toggle("flip");b.setAttribute("aria-pressed",b.classList.contains("flip"))}));
+
+/* infectados */
+const ico=(petals,size,col)=>{let p="";if(petals)for(let i=0;i<10;i++)p+=`<ellipse cx="75" cy="45" rx="7" ry="22" fill="var(--rust)" transform="rotate(${i*36} 75 45) translate(0 -14)"/>`;
+ return `<svg viewBox="0 0 150 150" aria-hidden="true">${p}<circle cx="75" cy="45" r="${size*.28}" fill="${col}"/><path d="M${75-size*.5} 150c0-50 ${size*.2}-85 ${size*.5}-85s${size*.5} 35 ${size*.5} 85z" fill="${col}"/></svg>`};
+const tipos=[
+ ["Corredores","Primeiro estágio da infecção. São rápidos e agressivos, mas ainda enxergam. Aparecem em grupos e atacam de forma desorganizada.",25,ico(0,60,"#7d8b78")],
+ ["Perseguidores","Estágio intermediário. Ainda enxergam, mas se escondem e esperam o momento de surpreender o jogador.",50,ico(0,70,"#6a7d62")],
+ ["Estaladores","Estágio avançado: o fungo cobre os olhos e eles se orientam por som, estalando para localizar presas. Um contato costuma ser fatal.",75,ico(1,70,"#4f6a4a")],
+ ["Brutamontes","Estágio final. Corpos enormes, cobertos por placas fúngicas, que resistem a muito dano e atiram esporos tóxicos.",100,ico(0,110,"#3c5239")]
+];
+function mostrar(i){[...$(".tabs").children].forEach((b,j)=>b.setAttribute("aria-selected",j===i));
+ const t=tipos[i];$("#painel").innerHTML=`${t[3]}<div><h3>${t[0]}</h3><p>${t[1]}</p><div class="tip">Avanço da infecção</div><div class="bar"><i></i></div></div>`;
+ requestAnimationFrame(()=>requestAnimationFrame(()=>$("#painel .bar i").style.width=t[2]+"%"))}
+tipos.forEach((t,i)=>{const b=document.createElement("button");b.type="button";b.role="tab";b.textContent=t[0];b.onclick=()=>mostrar(i);$(".tabs").appendChild(b)});
+mostrar(0);
+
+/* linha do tempo */
+const tl=[["2013","Lançamento no PlayStation 3","O jogo original chega em 14 de junho e conquista público e crítica pela narrativa."],
+["2014","Remasterizado e Left Behind","Versão para PS4 e a expansão que mostra um capítulo da vida de Ellie."],
+["2020","The Last of Us Part II","A sequência chega ao PlayStation 4 e continua a história dos dois protagonistas."],
+["2022","The Last of Us Part I","Remake completo do primeiro jogo para o PS5, com visual renovado."],
+["2023","Série da HBO e versão para PC","A história ganha adaptação para a TV e a Part I chega ao PC."],
+["2024","Part II Remastered","A sequência é relançada no PS5 com melhorias técnicas."]];
+$("#tl").innerHTML=tl.map(t=>`<li class="rv"><button aria-expanded="false"><b>${t[0]}</b> — ${t[1]}</button><div class="more"><div><p>${t[2]}</p></div></div></li>`).join("");
+document.querySelectorAll("#tl button").forEach(b=>b.onclick=()=>{const li=b.parentElement;li.classList.toggle("open");b.setAttribute("aria-expanded",li.classList.contains("open"))});
+
+/* quiz */
+const qs=[["Qual fungo transforma as pessoas no jogo?",["Cordyceps","Penicillium","Candida"],0],
+["Qual estúdio criou o jogo?",["Insomniac","Naughty Dog","Santa Monica"],1],
+["Quem compôs a trilha sonora do primeiro jogo?",["Hans Zimmer","Gustavo Santaolalla","Jeremy Soule"],1]];
+let qi=0,pt=0;
+function pergunta(){const el=$("#q");if(qi>=qs.length){el.innerHTML=`<h3>Você acertou ${pt} de ${qs.length}.</h3><p style="margin:.8rem 0">${pt===qs.length?"Sobrevivente nível máximo!":"Tente de novo para melhorar."}</p><button class="btn" id="re">Jogar novamente</button>`;$("#re").onclick=()=>{qi=0;pt=0;pergunta()};return}
+ const q=qs[qi];el.innerHTML=`<h3>${q[0]}</h3><div class="opts">${q[1].map((o,i)=>`<button data-i="${i}">${o}</button>`).join("")}</div><p class="tip" id="fb" style="margin-top:1rem" aria-live="polite">Pergunta ${qi+1} de ${qs.length}</p>`;
+ el.querySelectorAll(".opts button").forEach(b=>b.onclick=()=>{const ok=+b.dataset.i===q[2];if(ok)pt++;
+  el.querySelectorAll(".opts button").forEach(x=>{x.disabled=true;if(+x.dataset.i===q[2])x.style.borderColor="var(--moss)";});
+  if(!ok)b.style.borderColor="var(--rust)";$("#fb").textContent=ok?"Correto!":"Não foi dessa vez.";setTimeout(()=>{qi++;pergunta()},1100)})}
+pergunta();watch();
+</script>
+</body>
+</html>
